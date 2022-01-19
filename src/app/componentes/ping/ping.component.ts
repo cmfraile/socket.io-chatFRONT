@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { WebsrestService } from 'src/app/servicios/websrest.service';
 
 @Component({
   selector: 'app-ping',
@@ -8,9 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PingComponent implements OnInit {
 
-  constructor() { }
+  constructor( public _wr:WebsrestService ){}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

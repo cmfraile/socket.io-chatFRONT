@@ -1,4 +1,4 @@
 <div class="ping">
-    <p [ngClass]="{'wait':true,'on':true,'off':true}">REST</p>
-    <p [ngClass]="{'wait':true,'on':true,'off':true}">WebS</p>
+    <p [ngClass]="{'wait':true,'on':_wr.pings.rest,'off':!_wr.pings.rest}">REST</p>
+    <p [ngClass]="{'wait':true,'on':_wr.pings.webs,'off':!_wr.pings.webs}">WebS</p>
 </div>

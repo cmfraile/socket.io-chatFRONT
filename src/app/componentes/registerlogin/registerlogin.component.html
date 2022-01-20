@@ -26,8 +26,10 @@
             <input matInput type='password' formControlName="pass2"> 
         </mat-form-field>
         
-        <button mat-stroked-button color="primary" [ngClass]="{'hidden':accionestado == undefined}"
+        <button mat-stroked-button color="primary"
+        [ngClass]="{'hidden':accionestado == undefined}"
         [innerText]="accionestado == 'registro' ? 'registro' : 'login'"
+        (click)="botonform()"
         ></button>
     </form>
 </div>

@@ -1,1 +1,33 @@
-<p>registerlogin works!</p>
+<div class="registerlogin">
+
+    <form [formGroup]="forma">
+        
+        <mat-radio-group formControlName="accion" >
+            <mat-radio-button value='registro' (change)="changecb($event)">Registro</mat-radio-button>
+            <mat-radio-button value='login' (change)="changecb($event)">Login</mat-radio-button>
+        </mat-radio-group>
+
+        <br>
+
+        <mat-form-field appearance="outline" [ngClass]="{'hidden':accionestado == undefined}" >
+            <mat-label>correo electronico</mat-label>
+            <input matInput type='text' [disabled]="true" formControlName="email">
+        </mat-form-field>
+        <mat-form-field appearance="outline" [ngClass]="{'hidden':accionestado == undefined || accionestado == 'login'}">
+            <mat-label>Nick</mat-label>
+            <input matInput type='text' formControlName="nick">
+        </mat-form-field>
+        <mat-form-field appearance="outline" [ngClass]="{'hidden':accionestado == undefined}">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type='password' formControlName="pass1">
+        </mat-form-field>
+        <mat-form-field appearance="outline" [ngClass]="{'hidden':accionestado == undefined || accionestado == 'login'}">
+            <mat-label>repetir contraseña</mat-label>
+            <input matInput type='password' formControlName="pass2"> 
+        </mat-form-field>
+        
+        <button mat-stroked-button color="primary" [ngClass]="{'hidden':accionestado == undefined}"
+        [innerText]="accionestado == 'registro' ? 'registro' : 'login'"
+        ></button>
+    </form>
+</div>

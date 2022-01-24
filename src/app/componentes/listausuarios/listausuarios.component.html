@@ -1,1 +1,7 @@
-<p>listausuarios works!</p>
+<div class="listausuarios">
+    <div class="usercard" *ngFor="let x of listausuarios" >
+        <div class="foto"><img src="{{x.pic}}" alt=""></div>
+        <div class="nick">{{x.nick}}</div>
+        <div class="correo">{{x.correo}}</div>
+    </div>
+</div>

@@ -20,6 +20,8 @@ export class WebsrestService {
     })
   }
 
-  registro(){}
+  registro(data:any){
+    return this._hc.post(`${this.url}/api/user`,data);
+  }
 
 }

@@ -26,6 +26,14 @@ export class RegisterloginComponent implements OnInit {
       case undefined : return ;
       case 'registro' :
         console.log('registro botonform');
+        const { email , nick , pass1 , pass2 } = this.forma.controls;
+        if(email.value == '' && nick.value == '' && pass1.value == '' && pass2.value == ''){return};
+        if(pass1.value !== pass2.value){return};
+        const data = {correo:email.value,nick:nick.value,pass:pass1.value} ; console.log(data);
+        this._wr.registro(data).subscribe({
+          next : () => {this.forma.reset()},
+          error : (err) => {this.forma.reset() ; console.log(err)}
+        });
         break;
       case 'login' :
         console.log('login botonform');

@@ -19,7 +19,7 @@ export class RegisterloginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  changecb(evento:MatRadioChange){this.accionestado = evento.value ; this.forma.reset()}
+  changecb(evento:MatRadioChange){this.forma.reset() ; this.accionestado = evento.value ; }
 
   botonform(){
     switch(this.accionestado){

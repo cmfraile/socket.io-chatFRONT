@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MenucambioService } from './servicios/menucambio.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'chatFRONT';
+  constructor(public _mc:MenucambioService){}
 }

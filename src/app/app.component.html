@@ -1,8 +1,15 @@
 <div class="container">
   <div class="row aplicacion">
-    <div class="col"><app-registerlogin></app-registerlogin></div></div>
-    <div class="col"><app-listausuarios></app-listausuarios></div>
+    <div class="col des">
+      <app-desplegable></app-desplegable>
+    </div>
+    <div class="col acc">
+      <app-registro *ngIf="_mc.menucambio == 'registro'"></app-registro>
+      <app-login *ngIf="_mc.menucambio == 'login'"></app-login>
+      <app-listausuarios *ngIf="_mc.menucambio == 'lista'"></app-listausuarios>
+    </div>
+  </div>
   <div class="row pinglogin">
-    <div class="col ping"><app-ping></app-ping></div>
+    <app-ping></app-ping>
   </div>
 </div>

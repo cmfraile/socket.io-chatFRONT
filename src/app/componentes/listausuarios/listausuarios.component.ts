@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-listausuarios',
@@ -8,15 +7,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ListausuariosComponent implements OnInit {
 
-  lista:any;
-  
-  constructor( private _hc:HttpClient ){
-    this._hc.get('http://localhost:8000/api/user').subscribe((resp:any) => {
-      this.lista = resp;
-      console.log(resp);
-    });
-  }
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
 }

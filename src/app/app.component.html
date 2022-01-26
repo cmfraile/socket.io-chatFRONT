@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="_r.url == '/'" >
   <div class="row aplicacion">
     <div class="col des">
       <app-desplegable></app-desplegable>
@@ -13,3 +13,4 @@
     <app-ping></app-ping>
   </div>
 </div>
+<router-outlet></router-outlet>

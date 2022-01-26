@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PingComponent } from './componentes/ping/ping.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,8 +13,13 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { ListausuariosComponent } from './componentes/listausuarios/listausuarios.component';
 import { DesplegableComponent } from './componentes/desplegable/desplegable.component';
+import { PaneluserModule , routes as purouter } from './componentes/paneluser/paneluser.module';
+import { RouterModule , Routes } from '@angular/router';
 
-
+const routes : Routes = [
+  {path:'',component:AppComponent},
+  {path:'user',children:purouter},
+];
 
 @NgModule({
   declarations: [
@@ -27,8 +31,8 @@ import { DesplegableComponent } from './componentes/desplegable/desplegable.comp
     DesplegableComponent,
   ],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     CommonModule,
     BrowserAnimationsModule,
@@ -36,7 +40,8 @@ import { DesplegableComponent } from './componentes/desplegable/desplegable.comp
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatRadioModule
+    MatRadioModule,
+    PaneluserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

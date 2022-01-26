@@ -13,4 +13,4 @@
     <app-ping></app-ping>
   </div>
 </div>
-<router-outlet></router-outlet>
+<router-outlet *ngIf="_r.url != '/'" ></router-outlet>

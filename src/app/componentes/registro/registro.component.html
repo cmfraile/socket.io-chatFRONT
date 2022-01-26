@@ -1,1 +1,28 @@
-<p>registro works!</p>
+<div class="formregistro">
+    <form [formGroup]="forma">
+        <mat-form-field appearance="outline">
+            <mat-label>Correo</mat-label>
+            <input  matInput
+                    formControlName="correo">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>nick</mat-label>
+            <input  matInput
+                    formControlName="nick">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input  type="password"
+                    matInput
+                    formControlName="pass1">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Repite contraseña</mat-label>
+            <input  type="password"
+                    matInput
+                    formControlName="pass2">
+        </mat-form-field>
+        <pre *ngIf="errorform == true" >Algo falló</pre>
+        <button mat-stroked-button color="primary" (click)="registrarse()" >Registro</button>
+    </form>
+</div>

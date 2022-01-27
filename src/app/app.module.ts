@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
-import {MatRadioModule} from '@angular/material/radio';
+import {MatRadioButton, MatRadioModule} from '@angular/material/radio';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { ListausuariosComponent } from './componentes/listausuarios/listausuarios.component';

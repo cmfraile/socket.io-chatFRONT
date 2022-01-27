@@ -5,6 +5,7 @@ import { MenuComponent } from './menu/menu.component';
 import { ContenidoComponent } from './contenido/contenido.component';
 import { RouterModule , Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatRadioModule } from '@angular/material/radio';
 
 export const routes : Routes = [
   {path:'',component:MainComponent},
@@ -19,7 +20,8 @@ export const routes : Routes = [
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule
+    RouterModule,
+    MatRadioModule
   ]
 })
 export class PaneluserModule { }

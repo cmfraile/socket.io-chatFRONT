@@ -6,6 +6,11 @@ import { ContenidoComponent } from './contenido/contenido.component';
 import { RouterModule , Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatRadioModule } from '@angular/material/radio';
+import { PerfilComponent } from './contenido/perfil/perfil.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+
 
 export const routes : Routes = [
   {path:'',component:MainComponent},
@@ -16,12 +21,16 @@ export const routes : Routes = [
     MainComponent,
     MenuComponent,
     ContenidoComponent,
+    PerfilComponent,
   ],
   imports: [
     CommonModule,
     BrowserModule,
     RouterModule,
-    MatRadioModule
+    MatRadioModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
   ]
 })
 export class PaneluserModule { }

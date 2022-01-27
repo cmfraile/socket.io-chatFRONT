@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuserService } from '../servicios/menuser.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor( private _mu:MenuserService ){}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
+
+  seleccionar(opcion:string){ this._mu.opcion = opcion };
+
+
 
 }

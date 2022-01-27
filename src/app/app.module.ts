@@ -15,10 +15,11 @@ import { ListausuariosComponent } from './componentes/listausuarios/listausuario
 import { DesplegableComponent } from './componentes/desplegable/desplegable.component';
 import { PaneluserModule , routes as purouter } from './componentes/paneluser/paneluser.module';
 import { RouterModule , Routes } from '@angular/router';
+import { LoginguardGuard } from './guardas/loginguard.guard';
 
 const routes : Routes = [
   {path:'',component:AppComponent},
-  {path:'user',children:purouter},
+  {path:'user',canActivate:[LoginguardGuard],children:purouter},
 ];
 
 @NgModule({

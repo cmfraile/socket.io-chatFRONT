@@ -1,13 +1,15 @@
 <div class="formlogin">
-    <form action="">
+    <form [formGroup]="forma">
         <mat-form-field appearance="outline">
             <mat-label>Correo</mat-label>
-            <input matInput>
+            <input  matInput
+                    formControlName="correo">
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Contraseña</mat-label>
-            <input matInput>
+            <input  matInput
+                    formControlName="pass">
         </mat-form-field>
-        <button mat-stroked-button color="primary">Login</button>
+        <button mat-stroked-button color="primary" (click)="loginar()" >Login</button>
     </form>
 </div>

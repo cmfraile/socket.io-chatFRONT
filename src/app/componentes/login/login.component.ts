@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { WebsrestService } from 'src/app/servicios/websrest.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,18 @@ import { FormBuilder } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private _fb:FormBuilder ){}
+  forma:FormGroup;
+  
+  constructor( private _fb:FormBuilder , private _wr:WebsrestService ){
+    this.forma = this._fb.group({ correo:[''] , pass:[''] });
+  }
+
+  loginar(){
+    const { correo , pass } = this.forma.value;
+    this._wr.login({correo,pass}).subscribe({
+      next: console.log , error: console.log , complete : () => {this.forma.reset()}
+    })
+  }
 
   ngOnInit(): void {}
 

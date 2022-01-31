@@ -17,6 +17,7 @@ import { PaneluserModule , routes as purouter } from './componentes/paneluser/pa
 import { RouterModule , Routes } from '@angular/router';
 import { LoginguardGuard } from './guardas/loginguard.guard';
 
+
 const routes : Routes = [
   {path:'',component:AppComponent},
   {path:'user',canActivate:[LoginguardGuard],children:purouter},

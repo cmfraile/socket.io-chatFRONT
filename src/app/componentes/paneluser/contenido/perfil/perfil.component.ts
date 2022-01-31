@@ -8,11 +8,11 @@ import { WebsrestService } from 'src/app/servicios/websrest.service';
 })
 export class PerfilComponent implements OnInit {
 
-  usuario!:any;
+  usuario!:any|undefined;
   
   constructor( private _wb:WebsrestService ){
     this._wb.perfil(localStorage.getItem('id_user') || "").subscribe({
-      next : console.log
+      next : (resp:any) => {console.log(resp) ; this.usuario = resp}
     })
   }
 

@@ -1,11 +1,11 @@
 <div class="perfil">
-    <div class="grupo">
+    <div class="grupo" *ngIf="usuario !== undefined" >
         <div class="foto">
-            <img src="https://picsum.photos/200" alt="">
+            <img src={{usuario.pic}} alt="">
             <i class="fas fa-dice-d6"></i>
         </div>
         <mat-form-field appearance="outline">
-            <mat-label>Nick de usuario</mat-label>
+            <mat-label>{{usuario.nick}}</mat-label>
             <input matInput>
         </mat-form-field>
         <button mat-stroked-button>Guardar cambios</button>

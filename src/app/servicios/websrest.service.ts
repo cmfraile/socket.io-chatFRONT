@@ -23,10 +23,6 @@ export class WebsrestService {
   registro(data:any){return this._hc.post(`${this.url}/api/user`,data);}
   login(data:any){return this._hc.post(`${this.url}/api/user/login`,data);}
   lista(){return this._hc.get(`${this.url}/api/user`)};
-  perfil(id:string){
-    const urltest = `${this.url}/api/user/${id}`;
-    console.log(urltest);
-    return this._hc.get(urltest);
-  }
+  perfil(id:string){return this._hc.get(`${this.url}/api/user/${id}`);}
 
 }

@@ -1,7 +1,7 @@
 <div class="perfil">
     <div class="grupo" *ngIf="usuario !== undefined" >
-        <div class="foto">
-            <img src={{usuario.pic}} alt="">
+        <div class="foto" (click)="listado()" >
+            <img src={{listacambioimg[0]}} alt="">
             <i class="fas fa-dice-d6"></i>
         </div>
         <mat-form-field appearance="outline">

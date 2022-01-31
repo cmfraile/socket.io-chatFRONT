@@ -14,6 +14,7 @@ export class PerfilComponent implements OnInit {
   usuario!:any|undefined;
 
   listacambioimg:any[] = [];
+  listanum:number[] = this.listanumFN();
   
   constructor( private _wb:WebsrestService , private _hc:HttpClient ){
     this.listado();
@@ -22,11 +23,12 @@ export class PerfilComponent implements OnInit {
     });
   }
 
-  listanum = ():number[] => {
+  listanumFN():number[]{
     let arraynum:number[] = [];
-    for(let i = 1 ; i = 30 ; i++){arraynum.push(i)};
+    for(let i = 1 ; i <= 30 ; i++){arraynum.push(i)};
     return shuffle(arraynum);
   };
+  
   listado(){
     const consulta = () => {
       return this._hc.get(`https://picsum.photos/v2/list?page=${this.listanum.pop()}`).pipe(
@@ -50,7 +52,7 @@ export class PerfilComponent implements OnInit {
         });
         return shuffle(salida);
       }),
-      tap(console.log)
+      //tap(console.log)
     )};
     /*
     if(this.listacambioimg.length == 0){

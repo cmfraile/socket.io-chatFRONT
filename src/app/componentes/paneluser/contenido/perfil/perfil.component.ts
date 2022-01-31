@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WebsrestService } from 'src/app/servicios/websrest.service';
 import { HttpClient } from '@angular/common/http';
 import { tap , map } from 'rxjs/operators';
+import { shuffle } from 'underscore';
 
 @Component({
   selector: 'app-perfil',
@@ -21,11 +22,14 @@ export class PerfilComponent implements OnInit {
     });
   }
 
-  listanum:number = -1;
+  listanum = ():number[] => {
+    let arraynum:number[] = [];
+    for(let i = 1 ; i = 30 ; i++){arraynum.push(i)};
+    return shuffle(arraynum);
+  };
   listado(){
     const consulta = () => {
-      this.listanum++;
-      return this._hc.get(`https://picsum.photos/v2/list?page=${this.listanum}`).pipe(
+      return this._hc.get(`https://picsum.photos/v2/list?page=${this.listanum.pop()}`).pipe(
       //tap(console.log),
       map( (resp:any) => {
         let salida:any[] = [];
@@ -44,7 +48,7 @@ export class PerfilComponent implements OnInit {
           gestion = gestion.join('/');
           salida.push(gestion);
         });
-        return salida;
+        return shuffle(salida);
       }),
       tap(console.log)
     )};

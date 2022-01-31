@@ -16,5 +16,23 @@
             margin: 20px 0px
         .foto
             margin: 20px 0px
+            display: flex
+            justify-content: center
+            align-items: center
             img
+                z-index: 0
                 border-radius: 100%
+            i
+                font-size: 4rem
+                z-index: 1
+                position: absolute
+                color: lightgreen
+                display: none
+            &:hover
+                margin: 15px 0px
+                img
+                    border: 5px solid lightgreen
+                i
+                    display: block
+
+            

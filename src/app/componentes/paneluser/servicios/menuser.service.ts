@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class MenuserService {
 
   opcion:string="";
+  usuario!:any;
 
   constructor() { }
 }

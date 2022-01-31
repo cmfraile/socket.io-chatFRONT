@@ -24,8 +24,9 @@ export class LoginComponent implements OnInit {
         localStorage.clear();
         localStorage.setItem('token',resp.token);
         localStorage.setItem('expiracion',new Date().setSeconds(resp.expiracion).toString());
+        localStorage.setItem('id_user',resp.iduser);
         this._r.navigate(['user'])
-      } , error: console.log , complete : () => {this.forma.reset()}
+      } , error: (err) => {console.log(err) ; this.forma.reset()} , complete : () => {this.forma.reset()}
     })
   }
 

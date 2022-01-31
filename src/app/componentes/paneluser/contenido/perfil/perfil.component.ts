@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WebsrestService } from 'src/app/servicios/websrest.service';
 
 @Component({
   selector: 'app-perfil',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilComponent implements OnInit {
 
-  constructor(){}
+  usuario!:any;
+  
+  constructor( private _wb:WebsrestService ){
+    this._wb.perfil(localStorage.getItem('id_user') || "").subscribe({
+      next : console.log
+    })
+  }
 
   ngOnInit(): void {}
 

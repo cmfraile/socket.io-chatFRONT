@@ -5,9 +5,9 @@
             <i class="fas fa-dice-d6"></i>
         </div>
         <mat-form-field appearance="outline">
-            <mat-label>{{usuario.nick}}</mat-label>
-            <input matInput>
+            <mat-label>Nick del usuario:</mat-label>
+            <input matInput #inputxt [value]="usuario.nick">
         </mat-form-field>
-        <button mat-stroked-button>Guardar cambios</button>
+        <button mat-stroked-button (click)="guardar(inputxt.value)" >Guardar cambios</button>
     </div>
 </div>

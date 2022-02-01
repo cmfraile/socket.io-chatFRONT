@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { WebsrestService } from 'src/app/servicios/websrest.service';
 import { HttpClient } from '@angular/common/http';
 import { tap , map } from 'rxjs/operators';
@@ -19,7 +19,10 @@ export class PerfilComponent implements OnInit {
   constructor( private _wb:WebsrestService , private _hc:HttpClient ){
     this.listado();
     this._wb.perfil(localStorage.getItem('id_user') || "").subscribe({
-      next : (resp:any) => {console.log(resp) ; this.usuario = resp ; this.listacambioimg.unshift(this.usuario.pic)}
+      next : (resp:any) => {
+        console.log(resp);
+        this.usuario = resp;
+        this.listacambioimg.unshift(this.usuario.pic)}
     });
   }
 
@@ -63,6 +66,10 @@ export class PerfilComponent implements OnInit {
    if(this.listacambioimg.length == 1){
      consulta().subscribe((resp:string[]) => { this.listacambioimg = resp });
    }else{this.listacambioimg.shift()};
+  };
+
+  guardar(input:string){
+    console.log(this.listacambioimg[0],input);
   }
 
   ngOnInit(): void {}

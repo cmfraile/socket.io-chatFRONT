@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { io } from 'socket.io-client';
 
 @Injectable({
@@ -21,8 +21,18 @@ export class WebsrestService {
   }
 
   registro(data:any){return this._hc.post(`${this.url}/api/user`,data);}
+  
   login(data:any){return this._hc.post(`${this.url}/api/user/login`,data);}
+  
   lista(){return this._hc.get(`${this.url}/api/user`)};
+  
   perfil(id:string){return this._hc.get(`${this.url}/api/user/${id}`);}
+  perfilPUT(data:{pic:string,nick:string}){
+    const cabecera = {headers:new HttpHeaders({
+      token:localStorage.getItem('token') || "",
+      iduser:localStorage.getItem('id_user') || ""
+    })}
+    return this._hc.put(`${this.url}/api/user/`,data,cabecera);
+  }
 
 }

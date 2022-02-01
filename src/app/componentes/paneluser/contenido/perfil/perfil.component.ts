@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { WebsrestService } from 'src/app/servicios/websrest.service';
 import { HttpClient } from '@angular/common/http';
 import { tap , map } from 'rxjs/operators';
-import { shuffle } from 'underscore';
+import { any, shuffle } from 'underscore';
 
 @Component({
   selector: 'app-perfil',
@@ -16,9 +16,9 @@ export class PerfilComponent implements OnInit {
   listacambioimg:any[] = [];
   listanum:number[] = this.listanumFN();
   
-  constructor( private _wb:WebsrestService , private _hc:HttpClient ){
+  constructor( private _wr:WebsrestService , private _hc:HttpClient ){
     this.listado();
-    this._wb.perfil(localStorage.getItem('id_user') || "").subscribe({
+    this._wr.perfil(localStorage.getItem('id_user') || "").subscribe({
       next : (resp:any) => {
         console.log(resp);
         this.usuario = resp;
@@ -69,7 +69,11 @@ export class PerfilComponent implements OnInit {
   };
 
   guardar(input:string){
-    console.log(this.listacambioimg[0],input);
+    let putdata:any = {};
+    if(this.listacambioimg[0] !== this.usuario.pic){putdata['pic'] = this.listacambioimg[0] };
+    if(this.usuario.nick !== input){putdata['nick'] = input };
+    if(!putdata.pic && !putdata.nick){return};
+    this._wr.perfilPUT(putdata).subscribe(console.log);
   }
 
   ngOnInit(): void {}

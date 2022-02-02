@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { WebsrestService } from 'src/app/servicios/websrest.service';
 import { HttpClient } from '@angular/common/http';
-import { tap , map } from 'rxjs/operators';
-import { any, shuffle } from 'underscore';
+import { map } from 'rxjs/operators';
+import { shuffle } from 'underscore';
 
 @Component({
   selector: 'app-perfil',
@@ -16,7 +16,9 @@ export class PerfilComponent implements OnInit {
   listacambioimg:any[] = [];
   listanum:number[] = this.listanumFN();
   
-  constructor( private _wr:WebsrestService , private _hc:HttpClient ){
+  constructor( private _wr:WebsrestService , private _hc:HttpClient ){ this.consultaPERFIL() };
+
+  consultaPERFIL(){
     this.listado();
     this._wr.perfil(localStorage.getItem('id_user') || "").subscribe({
       next : (resp:any) => {
@@ -63,9 +65,8 @@ export class PerfilComponent implements OnInit {
       next : (resp:string[]) => { this.listacambioimg = resp } , error : console.log , complete : console.log
     })}else{this.listacambioimg.shift()};
     */
-   if(this.listacambioimg.length == 1){
-     consulta().subscribe((resp:string[]) => { this.listacambioimg = resp });
-   }else{this.listacambioimg.shift()};
+   if(this.listacambioimg.length == 1){consulta().subscribe((resp:string[]) => { this.listacambioimg = resp });}else{this.listacambioimg.shift()};
+   if(this.listanum.length == 1){this.listanum = this.listanumFN()};
   };
 
   guardar(input:string){
@@ -73,7 +74,10 @@ export class PerfilComponent implements OnInit {
     if(this.listacambioimg[0] !== this.usuario.pic){putdata['pic'] = this.listacambioimg[0] };
     if(this.usuario.nick !== input){putdata['nick'] = input };
     if(!putdata.pic && !putdata.nick){return};
-    this._wr.perfilPUT(putdata).subscribe(console.log);
+    this._wr.perfilPUT(putdata).subscribe({
+      next : () => { this.consultaPERFIL() },
+      error : console.log , complete : console.log
+    });
   }
 
   ngOnInit(): void {}

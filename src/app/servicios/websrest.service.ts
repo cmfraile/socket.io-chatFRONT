@@ -30,7 +30,7 @@ export class WebsrestService {
   perfilPUT(data:{pic:string,nick:string}){
     const cabecera = {headers:new HttpHeaders({
       token:localStorage.getItem('token') || "",
-      iduser:localStorage.getItem('id_user') || ""
+      id_user:localStorage.getItem('id_user') || ""
     })}
     return this._hc.put(`${this.url}/api/user/`,data,cabecera);
   }

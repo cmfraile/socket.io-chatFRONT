@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +8,12 @@ import { io } from 'socket.io-client';
 export class WebsrestService {
   
   url = 'http://localhost:8000';
-  socket = io(this.url);
+  socket:Socket = io(this.url);
   pings = { rest:false , webs:false }
   
   constructor( private _hc:HttpClient ){
     this.socket.on('connect',() => {this.pings.webs = true});
+    this.socket.once('2c',console.log);
     this.socket.off('disconnect',() => {this.pings.webs = false});
     this._hc.get(`${this.url}/api`).subscribe({
       next: () => {this.pings.rest = true},

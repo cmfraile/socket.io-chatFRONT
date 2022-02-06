@@ -10,8 +10,9 @@ export class ListausuariosComponent implements OnInit {
 
   listausuarios:any[] = []
   
-  constructor( private _wr:WebsrestService){
-    this._wr.lista().subscribe((resp:any) => this.listausuarios = resp)
+  constructor(private _wr:WebsrestService){
+    //this._wr.lista().subscribe((resp:any) => this.listausuarios = resp),
+    //SOCKET YA INSTANCIADO.
   }
 
   ngOnInit(): void {}

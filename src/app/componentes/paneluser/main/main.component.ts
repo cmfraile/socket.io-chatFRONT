@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WebsrestService } from 'src/app/servicios/websrest.service';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor( private _wr:WebsrestService ){
+    this._wr.socket.emit('conectados',localStorage.getItem('correo'),console.log);
   }
+
+  ngOnInit(): void {}
 
 }

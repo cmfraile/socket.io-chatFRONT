@@ -13,7 +13,6 @@ export class WebsrestService {
   
   constructor( private _hc:HttpClient ){
     this.socket.on('connect',() => {this.pings.webs = true});
-    this.socket.once('2c',console.log);
     this.socket.off('disconnect',() => {this.pings.webs = false});
     this._hc.get(`${this.url}/api`).subscribe({
       next: () => {this.pings.rest = true},

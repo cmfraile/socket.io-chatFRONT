@@ -8,22 +8,20 @@ import { WebsrestService } from 'src/app/servicios/websrest.service';
 })
 export class ListausuariosComponent implements OnInit {
 
-  listausuarios:any[] = []
+  listausuarios:any[] = [];
   
   constructor(private _wr:WebsrestService){
+    
+    const listaestado = (msg:string[]) => {
+      this.listausuarios.forEach((x:any) => { x['conexion'] = false });
+      this.listausuarios.forEach((x:any) => {if(msg.includes(x.correo)){x['conexion'] = true}});
+    }
     this._wr.lista().subscribe({
-      next : (resp:any) => {
-        console.log(resp);
-        this.listausuarios = resp;
-        this._wr.socket.emit('conectados',undefined,(resp:string[]) => {
-          resp.forEach((x:string) => {
-             if(this.listausuarios.includes(x)){console.log(true)}else{console.log(false)};
-          })
-        });
-      //this._wr.socket.emit('conectados',undefined,console.log);
-      },
+      next : (resp:any) => {this.listausuarios = resp},
       error : (err:any) => {console.log(err)}
     });
+    this._wr.socket.emit('conpoke',(msg:string[]) => {listaestado(msg)})
+    this._wr.socket.on('conectados',(msg:string[]) => {listaestado(msg)});
   }
 
   ngOnInit(): void {}

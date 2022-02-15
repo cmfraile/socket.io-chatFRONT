@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token',resp.token);
         localStorage.setItem('expiracion',new Date().setSeconds(resp.expiracion).toString());
         localStorage.setItem('id_user',resp.iduser);
-        localStorage.setItem('correo',correo);
         this._r.navigate(['user'])
       } , error: (err) => {console.log(err) ; this.forma.reset()} , complete : () => {this.forma.reset()}
     })

@@ -9,7 +9,7 @@ import { WebsrestService } from 'src/app/servicios/websrest.service';
 export class MainComponent implements OnInit {
 
   constructor( private _wr:WebsrestService ){
-    this._wr.socket.emit('conexion',localStorage.getItem('correo'));
+    this._wr.socket.emit('conexion',localStorage.getItem('id_user'));
   }
 
   ngOnInit(): void {}

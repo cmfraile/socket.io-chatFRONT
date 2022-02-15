@@ -15,6 +15,6 @@
 </div>
 
 <div class="escritura">
-    <input type="text">
-    <button>Enviar</button>
+    <input type="text" #inputbox (keyup)="enviar($event,inputbox)">
+    <!-- <button (click)="enviar(undefined)" >Enviar</button> -->
 </div>

@@ -12,6 +12,7 @@ export class ListausuariosComponent implements OnInit {
   
   constructor(private _wr:WebsrestService){
     
+    /*
     const listaestado = (msg:string[]) => {
       this.listausuarios.forEach((x:any) => { x['conexion'] = false });
       this.listausuarios.forEach((x:any) => {if(msg.includes(x.correo)){x['conexion'] = true}});
@@ -31,6 +32,9 @@ export class ListausuariosComponent implements OnInit {
         error : (err:any) => {console.log(err)}
       });
     })
+    */
+
+    
   }
 
   ngOnInit(): void {}

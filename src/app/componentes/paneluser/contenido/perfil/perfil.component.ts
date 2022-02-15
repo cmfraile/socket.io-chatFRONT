@@ -75,7 +75,7 @@ export class PerfilComponent implements OnInit {
     if(this.usuario.nick !== input){putdata['nick'] = input };
     if(!putdata.pic && !putdata.nick){return};
     this._wr.perfilPUT(putdata).subscribe({
-      next : () => { this.consultaPERFIL() },
+      next : () => { this.consultaPERFIL() ; this._wr.socket.emit('pokeperfil'); },
       error : console.log , complete : console.log
     });
   }

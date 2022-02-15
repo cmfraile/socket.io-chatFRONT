@@ -20,8 +20,17 @@ export class ListausuariosComponent implements OnInit {
       next : (resp:any) => {this.listausuarios = resp},
       error : (err:any) => {console.log(err)}
     });
-    this._wr.socket.emit('conpoke',(msg:string[]) => {listaestado(msg)})
+    this._wr.socket.emit('conpoke',(msg:string[]) => {listaestado(msg)});
     this._wr.socket.on('conectados',(msg:string[]) => {listaestado(msg)});
+    this._wr.socket.on('pokeperfil',() => {
+      this._wr.lista().subscribe({
+        next : (resp:any) => {
+          this.listausuarios = resp;
+          this._wr.socket.emit('conpoke',(msg:string[]) => {listaestado(msg)});
+        },
+        error : (err:any) => {console.log(err)}
+      });
+    })
   }
 
   ngOnInit(): void {}

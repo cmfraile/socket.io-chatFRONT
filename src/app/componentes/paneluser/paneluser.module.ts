@@ -10,6 +10,7 @@ import { PerfilComponent } from './contenido/perfil/perfil.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { ChatpublicoComponent } from './contenido/chatpublico/chatpublico.component';
 
 
 export const routes : Routes = [
@@ -22,6 +23,7 @@ export const routes : Routes = [
     MenuComponent,
     ContenidoComponent,
     PerfilComponent,
+    ChatpublicoComponent,
   ],
   imports: [
     CommonModule,

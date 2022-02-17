@@ -17,7 +17,7 @@ export class MenuComponent implements OnInit {
 
   logout(){
     localStorage.clear();
-    this._r.navigate(['']);
+    location.reload();
   }
 
 

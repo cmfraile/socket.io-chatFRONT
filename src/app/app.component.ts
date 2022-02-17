@@ -9,5 +9,7 @@ import { MenucambioService } from './servicios/menucambio.service';
 })
 export class AppComponent {
   title = 'chatFRONT';
-  constructor(public _mc:MenucambioService , public _r:Router){}
+  constructor(public _mc:MenucambioService , public _r:Router){
+    console.log("entras aqui")
+  }
 }

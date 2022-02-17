@@ -11,6 +11,7 @@ export class MainComponent implements OnInit {
   constructor( private _wr:WebsrestService ){
     //CORREGIR:
     this._wr.socket.emit('conexion',localStorage.getItem('id_user'));
+    
   }
 
   ngOnInit(): void {}

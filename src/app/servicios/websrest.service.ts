@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { io, Socket } from 'socket.io-client';
+import {  }
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,9 @@ export class WebsrestService {
   
   login(data:any){return this._hc.post(`${this.url}/api/user/login`,data);}
   
-  lista(){return this._hc.get(`${this.url}/api/user`)};
+  lista(){return this._hc.get(`${this.url}/api/user`).pipe(
+    map()
+  )};
   
   perfil(id:string){return this._hc.get(`${this.url}/api/user/${id}`);}
   perfilPUT(data:{pic:string,nick:string}){

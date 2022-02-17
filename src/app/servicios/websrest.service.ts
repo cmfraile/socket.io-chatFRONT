@@ -25,17 +25,6 @@ export class WebsrestService {
   registro(data:any){return this._hc.post(`${this.url}/api/user`,data);}
   
   login(data:any){return this._hc.post(`${this.url}/api/user/login`,data);}
-  
-  /*
-  lista(){return this._hc.get(`${this.url}/api/user`).pipe(
-    map((resp:any) => {
-      this.socket.emit('conpoke',(msg:string[]) => {  })
-      let caso:any[] = [];
-      resp.forEach((x:any) => { x['conexion'] = false ; caso.push(x) });
-      return caso;
-    })
-  )}
-  */
 
   async lista(){
     return new Promise<any[]>((rs,rj) => {
@@ -55,6 +44,7 @@ export class WebsrestService {
   }
   
   perfil(id:string){return this._hc.get(`${this.url}/api/user/${id}`);}
+  
   perfilPUT(data:{pic:string,nick:string}){
     const cabecera = {headers:new HttpHeaders({
       token:localStorage.getItem('token') || "",

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { io, Socket } from 'socket.io-client';
-import {  }
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +26,33 @@ export class WebsrestService {
   
   login(data:any){return this._hc.post(`${this.url}/api/user/login`,data);}
   
+  /*
   lista(){return this._hc.get(`${this.url}/api/user`).pipe(
-    map()
-  )};
+    map((resp:any) => {
+      this.socket.emit('conpoke',(msg:string[]) => {  })
+      let caso:any[] = [];
+      resp.forEach((x:any) => { x['conexion'] = false ; caso.push(x) });
+      return caso;
+    })
+  )}
+  */
+
+  async lista(){
+    return new Promise<any[]>((rs,rj) => {
+      this.socket.emit('conpoke',(cb:string[]) => {
+        this._hc.get(`${this.url}/api/user`).pipe(
+          map((resp:any) => {
+            let caso:any[] = [];
+            resp.forEach((x:any) => {
+              if(cb.includes(x._id)){ x['conectado'] = true}else{ x['conectado'] = false };
+              caso.push(x);
+            });
+            return caso;
+          })
+        ).subscribe({next: (resp:any[]) => {rs(resp)},error: (err:any) => {rj(err)}});
+      })
+    })
+  }
   
   perfil(id:string){return this._hc.get(`${this.url}/api/user/${id}`);}
   perfilPUT(data:{pic:string,nick:string}){

@@ -1,5 +1,5 @@
 <div class="listausuarios">
-    <div [ngClass]="{'usercard':true,'conectado':x.conexion,'desconectado':!x.conexion}" *ngFor="let x of listausuarios" >
+    <div [ngClass]="{'usercard':true,'conectado':x.conectado,'desconectado':!x.conectado}" *ngFor="let x of listausuarios" >
         <div class="foto"><img src="{{x.pic}}" alt=""></div>
         <div class="nick">{{x.nick}}</div>
         <div class="correo">{{x.correo}}</div>

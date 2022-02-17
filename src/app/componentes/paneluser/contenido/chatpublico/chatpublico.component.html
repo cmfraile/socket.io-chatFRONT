@@ -1,6 +1,5 @@
 <div class="perfil">
     
-    <!--
     <div [ngClass]="{'mensaje':true,'otro':true,'propio':false}"><p class="usuario">
         <img src="https://picsum.photos/50" alt="">
         Rodriguo
@@ -10,11 +9,10 @@
         <img src="https://picsum.photos/50" alt="">
         TU
     </p><p class="cuerpo">De puta madre papu</p></div>
-    -->
 
 </div>
 
 <div class="escritura">
-    <input type="text" #inputbox (keyup)="enviar($event,inputbox)">
-    <!-- <button (click)="enviar(undefined)" >Enviar</button> -->
+    <input type="text" #inputbox (keyup)="catchmsg($event,inputbox)">
+    <button (click)="catchmsgclick(inputbox)" >Enviar</button>
 </div>

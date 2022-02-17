@@ -11,12 +11,18 @@ export class ChatpublicoComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  enviar(event:KeyboardEvent,input:HTMLInputElement){
+  catchmsg(event:KeyboardEvent,input:HTMLInputElement){
     let tecla:string = event.key
-    if( tecla !== 'Enter'){return};if(input.value.replace(/\s+/g, '').length == 0){return};
+    if( tecla !== 'Enter'){return};if(input.value.replace(/\s+/g, '').length == 0){input.value = "" ; return};
     const mensaje = input.value ; input.value = "";
-    //Aqui se comienza a enviar el mensaje:
-    
+    this.envio(mensaje);
   }
+  catchmsgclick(input:HTMLInputElement){
+    if(input.value.replace(/\s+/g, '').length == 0){input.value = "" ; return};
+    const mensaje = input.value ; input.value = "";
+    this.envio(mensaje.trim());
+  }
+
+  envio(msg:string){console.log(msg)};
 
 }

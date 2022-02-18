@@ -25,6 +25,7 @@ export class ChatpublicoComponent implements OnInit {
 
   envio(msg:string){
     msg = msg.trim();
+    
     console.log(msg,localStorage.getItem('id_user'))
   };
 

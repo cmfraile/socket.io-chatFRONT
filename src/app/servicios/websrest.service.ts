@@ -28,12 +28,12 @@ export class WebsrestService {
 
   async lista(){
     return new Promise<any[]>((rs,rj) => {
-      this.socket.emit('conpoke',(cb:string[]) => {
+      this.socket.emit('conpoke',(cb:any[]) => {
         this._hc.get(`${this.url}/api/user`).pipe(
           map((resp:any) => {
             let caso:any[] = [];
             resp.forEach((x:any) => {
-              if(cb.includes(x._id)){ x['conectado'] = true}else{ x['conectado'] = false };
+              if(cb.includes(x)){ x['conectado'] = true}else{ x['conectado'] = false };
               caso.push(x);
             });
             return caso;

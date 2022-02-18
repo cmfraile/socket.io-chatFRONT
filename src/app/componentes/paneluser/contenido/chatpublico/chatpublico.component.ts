@@ -20,9 +20,12 @@ export class ChatpublicoComponent implements OnInit {
   catchmsgclick(input:HTMLInputElement){
     if(input.value.replace(/\s+/g, '').length == 0){input.value = "" ; return};
     const mensaje = input.value ; input.value = "";
-    this.envio(mensaje.trim());
+    this.envio(mensaje);
   }
 
-  envio(msg:string){console.log(msg)};
+  envio(msg:string){
+    msg = msg.trim();
+    console.log(msg,localStorage.getItem('id_user'))
+  };
 
 }

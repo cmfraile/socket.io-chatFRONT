@@ -10,14 +10,20 @@ export class ChatpublicoComponent implements OnInit {
 
   arraymsg:any[] = [];
 
-  
   constructor( private _wr:WebsrestService ){
-    this._wr.socket.on('msgpublicpoke',(cb:any[]) => {
+    //publipoke
+    this._wr.socket.emit('msgpublipoke',(cb:any[]) => {
       const myid:string = localStorage.getItem('id_user') || "";
-      cb.map( (x:any) => {
-        if(x.id == myid){x['propiedad'] = true}else{x['propiedad'] = false}
+      cb.forEach((x:any) => {
+        if(myid == x.id){x['propiedad'] = true}else{x['propiedad'] = false};
+        this.arraymsg = cb;
       });
     });
+    this._wr.socket.on('msgpublico',(msg:any) => {
+      const myid:string = localStorage.getItem('id_user') || "";
+      if(msg.id == myid){msg['propiedad'] = true}else{msg['propiedad'] = false}
+      this.arraymsg.push(msg);
+    })
   }
 
   ngOnInit(): void {}
@@ -36,7 +42,7 @@ export class ChatpublicoComponent implements OnInit {
 
   envio(msg:string){
     msg = msg.trim();
-    console.log(msg)
+    this._wr.socket.emit('msgpublico',msg);
   };
 
 }

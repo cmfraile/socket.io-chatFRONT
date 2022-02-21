@@ -1,9 +1,9 @@
 <div class="perfil">
 
-    <div *ngFor="let x in arraymsg" [ngClass]="{'mensaje':true,'otro':!x.propiedad,'propio':x.propiedad}"><p class="usuario">
+    <div *ngFor="let x of arraymsg" [ngClass]="{'mensaje':true,'otro':!x.propiedad,'propio':x.propiedad}"><p class="usuario">
         <img src="{{x.pic}}" alt="">
         {{x.nick}}
-    </p><p class="cuerpo">{{x.msg}}</p></div>
+    </p><p class="cuerpo">{{x.mensaje}}</p></div>
 
 </div>
 

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { io, Socket } from 'socket.io-client';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { map , tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,17 +26,17 @@ export class WebsrestService {
   login(data:any){return this._hc.post(`${this.url}/api/user/login`,data);}
 
   async lista(){
-    return new Promise<any[]>((rs,rj) => {
+    return new Promise<any[]>( (rs,rj) => {
       this.socket.emit('conpoke',(cb:any[]) => {
         this._hc.get(`${this.url}/api/user`).pipe(
           map((resp:any) => {
-            let caso:any[] = [];
+            let conexionarray:string[] = [];
+            cb.forEach((x:any) => { conexionarray.push(x.id) });
             resp.forEach((x:any) => {
-              if(cb.includes(x)){ x['conectado'] = true}else{ x['conectado'] = false };
-              caso.push(x);
+              if(conexionarray.includes(x._id)){x['conectado'] = true}else{x['conectado'] = false}
             });
-            return caso;
-          })
+            return resp;
+          }),
         ).subscribe({next: (resp:any[]) => {rs(resp)},error: (err:any) => {rj(err)}});
       })
     })
